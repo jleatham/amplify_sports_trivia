@@ -81,5 +81,5 @@ class Content extends Component {
 }
 
 /* Location 2 */
-export default withAuthenticator(Content);
+export default withAuthenticator(Content, {includeGreetings: true});
 
