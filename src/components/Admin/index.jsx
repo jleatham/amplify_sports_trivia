@@ -72,7 +72,7 @@ class Content extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">Welcome to Unicorn Live</h1>
+          <h1 className="App-title">Welcome to Unicorn Live!</h1>
         </header>
         <JsonTable rows={myJson.Questions} columns={columns} settings={this.tableSettings} onClickCell={this.onClickCell} className="tabelsa" />
       </div>
