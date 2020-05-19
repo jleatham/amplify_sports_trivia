@@ -13,7 +13,7 @@ class Modal extends Component {
     this.state = {
       answers: [],
       question: '',
-      id: '',
+      gameID: '',
       userAnswer: -1,
     };
   }
@@ -24,7 +24,7 @@ class Modal extends Component {
       return {
         answers: [],
         question: '',
-        id: '',
+        gameID: '',
         userAnswer: -1,
       };
     }
@@ -43,14 +43,16 @@ class Modal extends Component {
   }
 
   answerChosen = (index) => {
-    const { id } = this.state;
+    const { gameID } = this.state;
+    console.log("Modal/AnswerChosen --> Made it here");
+    console.log("gameID: ",JSON.stringify(gameID));  
     /* Location 18 */
     API.graphql(
       graphqlOperation(
         updateAnswer,
         {
           input: {
-            id,
+            gameID,
             answer: [index],
           },
         },
