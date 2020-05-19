@@ -18,12 +18,14 @@ class Game extends Component {
       modalVisible: false,
       drawInfo: {},
     };
+    console.log("Game/constructor --> Made it here");
   }
 
   componentDidMount() {
     this.listenForQuestions();
     this.listenForAnswers();
     this.setupClient();
+    console.log("Game/componentDidMount --> Made it here");
   }
 
   setupClient = () => {

@@ -61,16 +61,17 @@ body {
 }
 
 .app-container {
-	position: relative;
-	margin: 0 auto;
+	position: relative; 
+	margin: 0 auto; 
 	min-height: 100%;
+	overflow:hidden;
 }
 
 .game-container {
 	position: relative;
 	overflow: hidden;
 	width: 100vw;
-  height: 100vh;
+  	height: 100vh;
 }
 
 .modal-container {
@@ -89,7 +90,7 @@ body {
 .video-container {
 	position: relative;
 	height: 100%;
-	width: 100%;
+	width: 100%; 
 }
 
 .mute-container {
@@ -117,12 +118,12 @@ body {
 }
 
 video {
-	width: 640px;
-	min-width: 640px;
+ 	width: 640px; 
+	min-width: 640px; 
 	height: 100%;
 	position: absolute;
 	left: -160px;
-	object-fit: inherit;
+	object-fit: inherit; 
 }
 
 .question-container {
