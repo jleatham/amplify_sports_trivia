@@ -1,0 +1,11 @@
+{
+    "AppSyncApiName": "07sportstrivia",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": "false",
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "auth07sportstriviaae1d711b",
+            "Outputs.UserPoolId"
+        ]
+    }
+}

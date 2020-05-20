@@ -1,0 +1,34 @@
+{
+	"video": {
+		"sportstream": {
+			"service": "video",
+			"serviceType": "livestream",
+			"providerPlugin": "awscloudformation",
+			"sha": "78781e7cc8ef65ef1c60decfa3aacc76bedc7f09"
+		}
+	},
+	"auth": {
+		"07sportstriviaae1d711b": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": []
+		}
+	},
+	"api": {
+		"07sportstrivia": {
+			"service": "AppSync",
+			"providerPlugin": "awscloudformation",
+			"output": {
+				"authConfig": {
+					"additionalAuthenticationProviders": [],
+					"defaultAuthentication": {
+						"authenticationType": "AMAZON_COGNITO_USER_POOLS",
+						"userPoolConfig": {
+							"userPoolId": "auth07sportstriviaae1d711b"
+						}
+					}
+				}
+			}
+		}
+	}
+}

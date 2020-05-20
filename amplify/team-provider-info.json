@@ -1,0 +1,38 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-07sportstrivia-dev-175607-authRole",
+            "UnauthRoleArn": "arn:aws:iam::991513287163:role/amplify-07sportstrivia-dev-175607-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::991513287163:role/amplify-07sportstrivia-dev-175607-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-07sportstrivia-dev-175607-deployment",
+            "UnauthRoleName": "amplify-07sportstrivia-dev-175607-unauthRole",
+            "StackName": "amplify-07sportstrivia-dev-175607",
+            "StackId": "arn:aws:cloudformation:us-east-1:991513287163:stack/amplify-07sportstrivia-dev-175607/2f06b390-9ac3-11ea-9ba0-0abf94ca9997",
+            "AmplifyAppId": "d16fd55b1u9gh1"
+        },
+        "categories": {
+            "auth": {
+                "07sportstriviaae1d711b": {}
+            }
+        }
+    },
+    "test": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-07sportstrivia-test-184720-authRole",
+            "UnauthRoleArn": "arn:aws:iam::991513287163:role/amplify-07sportstrivia-test-184720-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::991513287163:role/amplify-07sportstrivia-test-184720-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-07sportstrivia-test-184720-deployment",
+            "UnauthRoleName": "amplify-07sportstrivia-test-184720-unauthRole",
+            "StackName": "amplify-07sportstrivia-test-184720",
+            "StackId": "arn:aws:cloudformation:us-east-1:991513287163:stack/amplify-07sportstrivia-test-184720/564a1b70-9aca-11ea-bb71-0ee1cf96ccc3",
+            "AmplifyAppId": "d16fd55b1u9gh1"
+        },
+        "categories": {
+            "auth": {
+                "07sportstriviaae1d711b": {}
+            }
+        }
+    }
+}
