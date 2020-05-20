@@ -31,15 +31,21 @@ class Content extends Component {
   }
 
   handleQuestionClick = (rowData) => {
+    console.log("Admin/handleQuestionClick --> Made it here");
+    console.log("Admin/handleQuestionClick: rowData: ",JSON.stringify(rowData));   
+    //preparing the data for graphQL call, which needs to have an input:{...}
     const question = {
       input: {
         question: rowData.Question,
         answers: rowData.Answers,
       },
     };
+    console.log("Admin/handleQuestionClick: question: ",JSON.stringify(question)); 
     API.graphql(graphqlOperation(createQuestion, question)).then((response) => {
       rowData.id = response.data.createQuestion.id;
-      console.log(response.data.createQuestion);
+      console.log("Admin/handleQuestionClick: response: ",JSON.stringify(response)); 
+      console.log("Admin/handleQuestionClick: response.data.createQuestion: ",JSON.stringify(response.data.createQuestion)); 
+      //console.log(response.data.createQuestion);
     });
   }
 
@@ -72,7 +78,7 @@ class Content extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">Welcome to Unicorn Live</h1>
+          <h1 className="App-title">Welcome to Unicorn Live!</h1>
         </header>
         <JsonTable rows={myJson.Questions} columns={columns} settings={this.tableSettings} onClickCell={this.onClickCell} className="tabelsa" />
       </div>
