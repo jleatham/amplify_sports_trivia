@@ -4,6 +4,8 @@
 
 .App-logo {
   height: 80px;
+  background-color: #D3D3D3;
+  border-radius: 15px;
 }
 
 .App-header {
@@ -33,7 +35,8 @@ body {
   background: #1289A7;
   }
   button{
-      background: rgb(28, 184, 65);
+      /*background: rgb(28, 184, 65);*/
+      background: green;
       color: white;
       border-radius: 4px;
       text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
@@ -43,6 +46,10 @@ body {
       /*border: 1px solid #999;*/
       border: transparent;
       text-decoration: none;
+  }
+  button:hover{
+      background: forestgreen;
+      cursor:pointer;
   }
   tr{
       height: 30px;
@@ -61,10 +68,12 @@ body {
   }
   
   .jsonOdd {
-      background: #EE5A24;
+      /*background: #EE5A24;*/
+      background: #D3D3D3;
   }
   .jsonEven{
-      background: #F79F1F;
+      /*background: #F79F1F;*/
+      background: #F2F3F4;
   }
   .mm-popup {
   display: none;

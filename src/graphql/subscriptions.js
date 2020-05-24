@@ -36,7 +36,11 @@ export const onCreateAnswer = /* GraphQL */ `
     onCreateAnswer(owner: $owner) {
       owner
       gameID
-      answer
+      answer {
+        question
+        gameID
+        answer
+      }
     }
   }
 `;
@@ -45,7 +49,11 @@ export const onUpdateAnswer = /* GraphQL */ `
     onUpdateAnswer(owner: $owner) {
       owner
       gameID
-      answer
+      answer {
+        question
+        gameID
+        answer
+      }
     }
   }
 `;
@@ -54,7 +62,11 @@ export const onDeleteAnswer = /* GraphQL */ `
     onDeleteAnswer(owner: $owner) {
       owner
       gameID
-      answer
+      answer {
+        question
+        gameID
+        answer
+      }
     }
   }
 `;

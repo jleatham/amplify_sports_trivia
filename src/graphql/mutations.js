@@ -48,7 +48,11 @@ export const createAnswer = /* GraphQL */ `
     createAnswer(input: $input, condition: $condition) {
       owner
       gameID
-      answer
+      answer {
+        question
+        gameID
+        answer
+      }
     }
   }
 `;
@@ -60,7 +64,11 @@ export const updateAnswer = /* GraphQL */ `
     updateAnswer(input: $input, condition: $condition) {
       owner
       gameID
-      answer
+      answer {
+        question
+        gameID
+        answer
+      }
     }
   }
 `;
@@ -72,7 +80,11 @@ export const deleteAnswer = /* GraphQL */ `
     deleteAnswer(input: $input, condition: $condition) {
       owner
       gameID
-      answer
+      answer {
+        question
+        gameID
+        answer
+      }
     }
   }
 `;

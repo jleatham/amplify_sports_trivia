@@ -33,7 +33,11 @@ export const getAnswer = /* GraphQL */ `
     getAnswer(owner: $owner, gameID: $gameID) {
       owner
       gameID
-      answer
+      answer {
+        question
+        gameID
+        answer
+      }
     }
   }
 `;
@@ -57,7 +61,11 @@ export const listAnswers = /* GraphQL */ `
       items {
         owner
         gameID
-        answer
+        answer {
+          question
+          gameID
+          answer
+        }
       }
       nextToken
     }
