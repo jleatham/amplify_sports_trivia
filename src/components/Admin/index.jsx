@@ -10,7 +10,9 @@ import { withAuthenticator } from 'aws-amplify-react';
 import { API, graphqlOperation } from 'aws-amplify';
 import { createQuestion, updateQuestion } from '../../graphql/mutations';
 import logo from './logo.svg';
-import myJson from './questions.json';
+//import myJson from './questions.json';
+//import myJson from './nba-questions.json';
+import myJson from './nfl-questions.json';
 
 const columns = [{
   key: 'Question',
@@ -78,7 +80,8 @@ class Content extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">Welcome to Unicorn Live!</h1>
+          <h1 className="App-title">Sports Trivia Admin Page</h1>
+          <img className ="App-logo" src={logo} alt="Logo" />
         </header>
         <JsonTable rows={myJson.Questions} columns={columns} settings={this.tableSettings} onClickCell={this.onClickCell} className="tabelsa" />
       </div>

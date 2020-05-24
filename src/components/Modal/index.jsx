@@ -66,7 +66,7 @@ class Modal extends Component {
 
   answerChosen = (index) => {
     //added with sam
-    const { gameID, username } = this.state;
+    const { gameID, username, question } = this.state;
     //
     console.log("Modal/AnswerChosen --> Made it here");
     console.log("Modal/AnswerChosen: gameID: ",JSON.stringify(gameID));
@@ -78,7 +78,9 @@ class Modal extends Component {
         {
           input: {
             gameID,           //was already added by sam but not working
-            answer: [index],
+            //answer: [index],
+            //answer: [100,200,300],  //graphQL list would turn each item into it's own N numbered list, 1 per item, not useful.
+            answer: [{question: question, gameID: gameID, answer:index}],
             owner:username,   //added with sam
             
           },
@@ -167,7 +169,7 @@ class Modal extends Component {
               </div>
               <div className="answers-container">
                 <div className="answers">
-                  {this.drawAnswerButtons(answers, userAnswer, answerId)}
+                  {this.drawAnswerButtons(answers, userAnswer, answerId)} 
                 </div>
               </div>
             </div>
