@@ -28,3 +28,15 @@ type Answer @model @key(fields: ["owner", "gameID"])
     gameID: ID!
     answer: [AnswerObject]
 }
+
+
+type GameID @model (subscriptions: {level: public}) 
+@auth (
+  rules: [
+    {allow:private}
+  ]
+)
+{
+    id: ID!
+    gameID: Int
+}

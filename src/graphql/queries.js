@@ -71,3 +71,26 @@ export const listAnswers = /* GraphQL */ `
     }
   }
 `;
+export const getGameId = /* GraphQL */ `
+  query GetGameId($id: ID!) {
+    getGameID(id: $id) {
+      id
+      gameID
+    }
+  }
+`;
+export const listGameIDs = /* GraphQL */ `
+  query ListGameIDs(
+    $filter: ModelGameIDFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listGameIDs(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        gameID
+      }
+      nextToken
+    }
+  }
+`;
