@@ -11,6 +11,12 @@ type Question @model (subscriptions: {level: public})
     answerId: Int
 }
 
+type AnswerObject {
+  question: String!
+  gameID: ID!
+  answer: Int
+}
+
 type Answer @model @key(fields: ["owner", "gameID"])
 @auth(
   rules: [
@@ -20,5 +26,17 @@ type Answer @model @key(fields: ["owner", "gameID"])
 {
     owner: String!
     gameID: ID!
-    answer: [Int]
+    answer: [AnswerObject]
+}
+
+
+type GameID @model (subscriptions: {level: public}) 
+@auth (
+  rules: [
+    {allow:private}
+  ]
+)
+{
+    id: ID!
+    gameID: Int
 }

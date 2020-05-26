@@ -36,7 +36,11 @@ export const onCreateAnswer = /* GraphQL */ `
     onCreateAnswer(owner: $owner) {
       owner
       gameID
-      answer
+      answer {
+        question
+        gameID
+        answer
+      }
     }
   }
 `;
@@ -45,7 +49,11 @@ export const onUpdateAnswer = /* GraphQL */ `
     onUpdateAnswer(owner: $owner) {
       owner
       gameID
-      answer
+      answer {
+        question
+        gameID
+        answer
+      }
     }
   }
 `;
@@ -54,7 +62,35 @@ export const onDeleteAnswer = /* GraphQL */ `
     onDeleteAnswer(owner: $owner) {
       owner
       gameID
-      answer
+      answer {
+        question
+        gameID
+        answer
+      }
+    }
+  }
+`;
+export const onCreateGameId = /* GraphQL */ `
+  subscription OnCreateGameId {
+    onCreateGameID {
+      id
+      gameID
+    }
+  }
+`;
+export const onUpdateGameId = /* GraphQL */ `
+  subscription OnUpdateGameId {
+    onUpdateGameID {
+      id
+      gameID
+    }
+  }
+`;
+export const onDeleteGameId = /* GraphQL */ `
+  subscription OnDeleteGameId {
+    onDeleteGameID {
+      id
+      gameID
     }
   }
 `;

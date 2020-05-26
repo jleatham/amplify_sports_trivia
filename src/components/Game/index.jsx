@@ -4,7 +4,7 @@ import awsvideoconfig from '../../aws-video-exports';
 
 /* Location 10 */
 import { Auth, API, graphqlOperation } from 'aws-amplify';
-import { onCreateQuestion, onUpdateQuestion } from '../../graphql/subscriptions';
+import { onCreateQuestion, onUpdateQuestion, onUpdateGameId } from '../../graphql/subscriptions';
 /* Location 15 */
 import { createAnswer } from '../../graphql/mutations';
 
@@ -23,16 +23,44 @@ class Game extends Component {
     console.log("Game/constructor: state.drawInfo",JSON.stringify(this.state.drawInfo));
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     this.listenForQuestions();
     this.listenForAnswers();
+    this.listenForGameID();
     this.setupClient();
+    
     console.log("Game/componentDidMount --> Made it here");
   }
 
-  setupClient = () => {
+  async setupClient() {
     /* Location 16 */
     console.log("Game/setupClient --> Made it here");
+    const self = this;
+    
+    
+    
+    const authData = await Auth.currentSession();
+    this.setState({gameID:'2', username:authData.idToken.payload['cognito:username']})
+    try {
+        const newAnswer = await API.graphql(graphqlOperation(createAnswer, { input: { gameID: '2', owner: authData.idToken.payload['cognito:username'] } }));
+        console.log("Game/setupClient/graph/createAnswer/then --> Made it here");
+        console.log("Game/setupClient/graph/createAnswer/then: res: ",JSON.stringify(newAnswer));
+    } catch(Error){console.log('Error: ',Error)}
+
+        
+  }
+  
+  
+  
+/*
+Original setup fuction
+  setupClient = () => {
+
+    console.log("Game/setupClient --> Made it here");
+    const self = this;
+    
+    
+    
     Auth.currentSession()
       .then((data) => {
         //added with Sam
@@ -49,6 +77,12 @@ class Game extends Component {
     });
         
   }
+
+*/  
+  
+  
+  
+  
 
 listenForQuestions = () => {
     const self = this;
@@ -102,6 +136,31 @@ listenForQuestions = () => {
 
 
   }
+
+
+
+
+
+  listenForGameID = () => {
+    const self = this;
+    console.log("Game/listenForGameID --> Made it here");
+    //console.log("self: ",JSON.stringify(self));      
+    API.graphql(
+      graphqlOperation(onUpdateGameId),
+    ).subscribe({
+      next: (data) => {
+        self.setState({
+          gameID: data.value.data.onUpdateGameID.gameID
+        });
+        console.log("Game/listenForGameID/graph/onUpdateGameID --> Made it here");
+        //console.log("Game/listenForGameID/graph/onUpdateQuestion: data",JSON.stringify(data));  
+        console.log("Game/listenForGameID/graph/onUpdateGameID: drawInfo=data.value.data=",JSON.stringify(data.value.data));         
+      },
+    });
+
+
+  }
+
 
   callbackFunction = (childData) => {
     /* Location 14 */
