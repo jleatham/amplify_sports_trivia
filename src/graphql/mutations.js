@@ -88,3 +88,36 @@ export const deleteAnswer = /* GraphQL */ `
     }
   }
 `;
+export const createGameId = /* GraphQL */ `
+  mutation CreateGameId(
+    $input: CreateGameIDInput!
+    $condition: ModelGameIDConditionInput
+  ) {
+    createGameID(input: $input, condition: $condition) {
+      id
+      gameID
+    }
+  }
+`;
+export const updateGameId = /* GraphQL */ `
+  mutation UpdateGameId(
+    $input: UpdateGameIDInput!
+    $condition: ModelGameIDConditionInput
+  ) {
+    updateGameID(input: $input, condition: $condition) {
+      id
+      gameID
+    }
+  }
+`;
+export const deleteGameId = /* GraphQL */ `
+  mutation DeleteGameId(
+    $input: DeleteGameIDInput!
+    $condition: ModelGameIDConditionInput
+  ) {
+    deleteGameID(input: $input, condition: $condition) {
+      id
+      gameID
+    }
+  }
+`;

@@ -70,3 +70,27 @@ export const onDeleteAnswer = /* GraphQL */ `
     }
   }
 `;
+export const onCreateGameId = /* GraphQL */ `
+  subscription OnCreateGameId {
+    onCreateGameID {
+      id
+      gameID
+    }
+  }
+`;
+export const onUpdateGameId = /* GraphQL */ `
+  subscription OnUpdateGameId {
+    onUpdateGameID {
+      id
+      gameID
+    }
+  }
+`;
+export const onDeleteGameId = /* GraphQL */ `
+  subscription OnDeleteGameId {
+    onDeleteGameID {
+      id
+      gameID
+    }
+  }
+`;

@@ -8,7 +8,8 @@ import { withAuthenticator } from 'aws-amplify-react';
 
 /* Location 3 */
 import { API, graphqlOperation } from 'aws-amplify';
-import { createQuestion, updateQuestion } from '../../graphql/mutations';
+import { createQuestion, updateQuestion, createGameId, updateGameId } from '../../graphql/mutations';
+import { listGameIDs, getGameId } from '../../graphql/queries';
 import logo from './logo.svg';
 //import myJson from './questions.json';
 //import myJson from './nba-questions.json';
@@ -69,11 +70,93 @@ class Content extends Component {
   }
 
   onClickCell = (event, columnName, rowData) => {
+    console.log("onClickCell: columnName: ",JSON.stringify(columnName));
+    console.log("onClickCell: rowData: ",JSON.stringify(rowData));
     if (columnName === 'button1') {
       this.handleQuestionClick(rowData);
     } else if (columnName === 'button2') {
       this.handleAnswerClick(rowData);
     }
+  }
+  
+  shoot() {
+
+    API.graphql(graphqlOperation(listGameIDs)).then((response) => {
+      console.log("listGameIDs response: ",JSON.stringify(response));
+      if ( response.data.listGameIDs.items.length > 0) {
+          console.log("gameIDs exist ");
+          console.log("gameIDs: ",JSON.stringify(response.data.listGameIDs.items));
+           return response;
+      } else {
+          console.log("no GameIDs, creating now ");
+          //const randomNumber = Math.floor(Math.random() * 11);
+          const gameID = {
+            input: {
+              gameID: (Math.floor(Math.random() * 3))
+            },
+          };    
+          
+          API.graphql(graphqlOperation(createGameId, gameID)).then((response) => {
+            console.log("createGameId response: ",response);
+        });  
+      }
+  }).then((response) => {
+      console.log("printing a promise plus data: ",response);
+            return API.graphql(graphqlOperation(getGameId, response.data.listGameIDs.items.id)).then((response) => {
+                  console.log("getGameId response: ",response);
+          });     
+  });
+  
+  
+/*
+            API.graphql(graphqlOperation(getGameId, response.data.listGameIDs.items.id)).then((response) => {
+                  console.log("getGameId response: ",response);
+          }); 
+  */
+
+  
+    
+  }
+  
+  
+  async shoot2() {
+
+    const gameList = await API.graphql(graphqlOperation(listGameIDs));
+    console.log('shoot2 gameList response: ',JSON.stringify(gameList));
+    if ( gameList.data.listGameIDs.items.length > 0) {
+              console.log("gameIDs exist ");
+              console.log("gameIDs: ",JSON.stringify(gameList.data.listGameIDs.items));
+              const newGameID = await API.graphql(graphqlOperation(updateGameId,{
+                input: {
+                  id: (gameList.data.listGameIDs.items[0].id),
+                  //gameID: (Math.floor(Math.random() * 3))
+                  gameID: 2
+                }
+              }));
+              console.log("newGameID: ",JSON.stringify(newGameID));
+          } else {
+              console.log("no GameIDs, creating now ");
+              //const randomNumber = Math.floor(Math.random() * 11);
+              const gameID = {
+                input: {
+                  //gameID: (Math.floor(Math.random() * 3))
+                  gameID: 2
+                },
+              };    
+              
+              const newGameID = await API.graphql(graphqlOperation(createGameId, gameID))
+              console.log("createGameId response: ",newGameID);
+          }    
+    /*
+    why isn't the below query working?
+    const gameID = await API.graphql(graphqlOperation(getGameId, {
+          input: {
+            id: (gameList.data.listGameIDs.items[0].id),
+          }      
+    } ));
+    console.log("getGameId response: ",gameID);    
+    
+    */
   }
 
   render() {
@@ -83,6 +166,7 @@ class Content extends Component {
           <h1 className="App-title">Sports Trivia Admin Page</h1>
           <img className ="App-logo" src={logo} alt="Logo" />
         </header>
+        <button onClick={this.shoot2}>Take the shot!</button>
         <JsonTable rows={myJson.Questions} columns={columns} settings={this.tableSettings} onClickCell={this.onClickCell} className="tabelsa" />
       </div>
     );
