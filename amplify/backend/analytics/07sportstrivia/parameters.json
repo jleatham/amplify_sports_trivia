@@ -1,0 +1,21 @@
+{
+    "appName": "07sportstrivia",
+    "roleName": "pinpointLambdaRole022a12b8",
+    "cloudformationPolicyName": "cloudformationPolicy022a12b8",
+    "cloudWatchPolicyName": "cloudWatchPolicy022a12b8",
+    "pinpointPolicyName": "pinpointPolicy022a12b8",
+    "authPolicyName": "pinpoint_amplify_022a12b8",
+    "unauthPolicyName": "pinpoint_amplify_022a12b8",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    }
+}

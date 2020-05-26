@@ -1,6 +1,6 @@
 {
     "identityPoolName": "07sportstriviaae1d711b_identitypool_ae1d711b",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "07sporae1d711b",
     "userPoolName": "07sportstriviaae1d711b_userpool_ae1d711b",
     "autoVerifiedAttributes": [
