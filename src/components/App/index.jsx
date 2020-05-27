@@ -16,37 +16,3 @@ export default withAuthenticator(App, {includeGreetings: true});
 
 
 
-//added analytics
-Analytics.autoTrack('session', {
-    enable: true,
-    provider: 'AWSPinpoint'
-});
-
-Analytics.autoTrack('pageView', {
-    enable: true,
-    eventName: 'pageView',
-    type: 'SPA',
-    provider: 'AWSPinpoint',
-    getUrl: () => {
-        return window.location.origin + window.location.pathname;
-    }
-});
-
-const mappedobjects = f => obj =>
-  Object.keys(obj).reduce((acc, key) => ({ ...acc, [key]: f(obj[key]) }), {});
-const Arrayofourstrings = value => [`${value}`];
-const mapArrayofourstrings = mappedobjects(Arrayofourstrings);
-
-async function trackUserIdforPinpoint() {
-    const { attributes } = await Auth.currentAuthenticatedUser();
-    const userAttributes = mapArrayofourstrings(attributes);
-    Analytics.updateEndpoint({
-      address: attributes.email,      
-      channelType: 'EMAIL',      
-      optOut: 'NONE',      
-      userId: attributes.sub,      
-      userAttributes,    
-    });
-  } 
-
-trackUserIdforPinpoint();

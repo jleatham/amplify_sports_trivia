@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import awsvideoconfig from '../../aws-video-exports';
 
 /* Location 10 */
-import { Auth, API, graphqlOperation } from 'aws-amplify';
+import { Auth, Analytics, API, graphqlOperation } from 'aws-amplify';
 import { onCreateQuestion, onUpdateQuestion, onUpdateGameId } from '../../graphql/subscriptions';
 /* Location 15 */
 import { createAnswer } from '../../graphql/mutations';
@@ -45,6 +45,9 @@ class Game extends Component {
         const newAnswer = await API.graphql(graphqlOperation(createAnswer, { input: { gameID: '2', owner: authData.idToken.payload['cognito:username'] } }));
         console.log("Game/setupClient/graph/createAnswer/then --> Made it here");
         console.log("Game/setupClient/graph/createAnswer/then: res: ",JSON.stringify(newAnswer));
+        
+        //analytics plugin
+        trackUserIdforPinpoint();
     } catch(Error){console.log('Error: ',Error)}
 
         
@@ -187,3 +190,38 @@ listenForQuestions = () => {
 }
 
 export default Game;
+
+//added analytics
+Analytics.autoTrack('session', {
+    enable: true,
+    provider: 'AWSPinpoint'
+});
+
+Analytics.autoTrack('pageView', {
+    enable: true,
+    eventName: 'pageView',
+    type: 'SPA',
+    provider: 'AWSPinpoint',
+    getUrl: () => {
+        return window.location.origin + window.location.pathname;
+    }
+});
+
+const mappedobjects = f => obj =>
+  Object.keys(obj).reduce((acc, key) => ({ ...acc, [key]: f(obj[key]) }), {});
+const Arrayofourstrings = value => [`${value}`];
+const mapArrayofourstrings = mappedobjects(Arrayofourstrings);
+
+async function trackUserIdforPinpoint() {
+    const { attributes } = await Auth.currentAuthenticatedUser();
+    const userAttributes = mapArrayofourstrings(attributes);
+    console.log(JSON.stringify(userAttributes));
+    Analytics.updateEndpoint({
+      address: attributes.email,      
+      channelType: 'EMAIL',      
+      optOut: 'NONE',      
+      userId: attributes.sub,      
+      userAttributes,    
+    });
+  } 
+
