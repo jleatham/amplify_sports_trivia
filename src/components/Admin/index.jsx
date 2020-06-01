@@ -13,7 +13,7 @@ import { listGameIDs, getGameId } from '../../graphql/queries';
 import logo from './logo.svg';
 //import myJson from './questions.json';
 //import myJson from './nba-questions.json';
-import myJson from './nfl-questions.json';
+import myJson from './nba-questions.json';
 
 const columns = [{
   key: 'Question',
@@ -163,10 +163,10 @@ class Content extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">Sports Trivia Admin Page</h1>
+          <h1 className="App-title">Sports Trivia Admin Page - NBA</h1>
           <img className ="App-logo" src={logo} alt="Logo" />
         </header>
-        <button onClick={this.shoot2}>Take the shot!</button>
+        <button onClick={this.shoot2}>Start Trivia Game!</button>
         <JsonTable rows={myJson.Questions} columns={columns} settings={this.tableSettings} onClickCell={this.onClickCell} className="tabelsa" />
       </div>
     );
